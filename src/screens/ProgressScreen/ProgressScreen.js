@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Alert,
   Pressable,
-  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {Agenda, AgendaEntry} from 'react-native-calendars';
@@ -34,7 +33,7 @@ const ProgressScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Progress</Text>
       </View>
@@ -43,7 +42,7 @@ const ProgressScreen = () => {
         renderItem={renderItem}
         renderEmptyDate={renderEmptyDate}
       />
-    </ScrollView>
+    </View>
   );
 };
 
