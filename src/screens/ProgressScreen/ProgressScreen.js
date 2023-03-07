@@ -1,11 +1,13 @@
-import {View, Text, StyleSheet, Alert, Pressable} from 'react-native';
-import React, {useState} from 'react';
 import {
-  Agenda,
-  AgendaEntry,
-  AgendaSchedule,
-  DateData,
-} from 'react-native-calendars';
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Pressable,
+  ScrollView,
+} from 'react-native';
+import React from 'react';
+import {Agenda, AgendaEntry} from 'react-native-calendars';
 import attends from '../../../assets/data/attends.json';
 
 const ProgressScreen = () => {
@@ -32,19 +34,34 @@ const ProgressScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Progress</Text>
+      </View>
       <Agenda
         items={attends}
         renderItem={renderItem}
         renderEmptyDate={renderEmptyDate}
       />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingVertical: 24,
+  },
+  header: {
+    paddingLeft: 24,
+    paddingRight: 24,
+    marginBottom: 12,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: '#1d1d1d',
+    marginBottom: 6,
   },
   item: {
     backgroundColor: 'white',
