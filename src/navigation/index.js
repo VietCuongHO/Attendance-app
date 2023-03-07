@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SettingScreen from '../screens/SettingScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+// import NotFoundScreen from '../screens/NotFoundScreen';
 
 const Tab = createBottomTabNavigator();
 

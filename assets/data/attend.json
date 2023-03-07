@@ -1,0 +1,61 @@
+{
+    "2023-03-01": [],
+    "2023-03-02": [
+      {
+        "id": "1",
+        "name": "Live: notJust.Hack Kickstart",
+        "height": 50,
+        "day": "2023-3-2"
+      }
+    ],
+    "2023-03-03": [
+      {
+        "id": "2",
+        "name": "Workshop: Build any mobile application with React Native",
+        "height": 50,
+        "day": "2023-3-3"
+      },
+      {
+        "id": "3",
+        "name": "Q&A session",
+        "height": 50,
+        "day": "2023-3-3"
+      }
+    ],
+    "2023-03-04": [
+      {
+        "id": "4",
+        "name": "Workshop: Build a Chat application in hours using Stream",
+        "height": 50,
+        "day": "2023-3-4"
+      },
+      {
+        "id": "5",
+        "name": "Q&A session",
+        "height": 50,
+        "day": "2023-3-4"
+      }
+    ],
+    "2023-3-5": [
+      {
+        "id": "6",
+        "name": "Workshop: Build Full-Stack applications with Nhost",
+        "height": 50,
+        "day": "2023-3-5"
+      },
+      {
+        "id": "7",
+        "name": "Q&A session",
+        "height": 50,
+        "day": "2023-3-5"
+      }
+    ],
+    "2023-3-6": [
+      {
+        "id": "8",
+        "name": "Demo Day",
+        "height": 50,
+        "day": "2023-3-6"
+      }
+    ]
+  }
