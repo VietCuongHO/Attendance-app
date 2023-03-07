@@ -33,7 +33,6 @@ const ProgressScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>ProgressScreen</Text>
       <Agenda
         items={attends}
         renderItem={renderItem}

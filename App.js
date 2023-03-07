@@ -8,13 +8,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Navigation from './src/navigation';
-import ProgressScreen from './src/screens/ProgressScreen/ProgressScreen';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
-      {/* <Navigation /> */}
-      <ProgressScreen />
+      <Navigation />
     </SafeAreaView>
   );
 };
