@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -12,6 +12,7 @@ import Avatar from '../../../assets/images/grandpa.jpg';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import CustomButton from '../../component/CustomButton';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SECTIONS = [
   {
@@ -45,9 +46,17 @@ export default function SettingScreen() {
   });
 
   const navigation = useNavigation();
+
+  // useEffect(() => {
+  //   if (!AsyncStorage.getItem('AcessToken')) {
+  //     navigation.navigate('SignIn');
+  //   }
+  // });
   const onLogOutPressed = () => {
     //validate user
+    AsyncStorage.removeItem('AccessToken');
     navigation.navigate('SignIn');
+    console.log(AsyncStorage.getItem('AcessToken'))
   };
   const onProfilePressed = () => {
     //validate user
@@ -55,87 +64,86 @@ export default function SettingScreen() {
   };
 
   return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Settings</Text>
-        </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Settings</Text>
+      </View>
 
-        <View style={styles.profile}>
-          <Image alt="" source={Avatar} style={styles.profileAvatar} />
+      <View style={styles.profile}>
+        <Image alt="" source={Avatar} style={styles.profileAvatar} />
 
-          <Text style={styles.profileName}>Viet Cuong</Text>
+        <Text style={styles.profileName}>Viet Cuong</Text>
 
-          <Text style={styles.profileEmail}>hovietcuong1803@gmail.com</Text>
+        <Text style={styles.profileEmail}>hovietcuong1803@gmail.com</Text>
 
-          <TouchableOpacity
-            onPress={onProfilePressed}>
-            <View style={styles.profileAction}>
-              <Text style={styles.profileActionText}>Profile</Text>
-              <FeatherIcon color="#fff" name="edit" size={16} />
-            </View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={onProfilePressed}>
+          <View style={styles.profileAction}>
+            <Text style={styles.profileActionText}>Profile</Text>
+            <FeatherIcon color="#fff" name="edit" size={16} />
+          </View>
+        </TouchableOpacity>
+      </View>
 
-        {SECTIONS.map(({header, items}) => (
-          <View style={styles.section} key={header}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionHeaderText}>{header}</Text>
-            </View>
-            <View style={styles.sectionBody}>
-              {items.map(({id, label, icon, type, value}, index) => {
-                return (
-                  <View
-                    key={id}
-                    style={[
-                      styles.rowWrapper,
-                      index === 0 && {borderTopWidth: 0},
-                    ]}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        // handle onPress
-                      }}>
-                      <View style={styles.row}>
+      {SECTIONS.map(({header, items}) => (
+        <View style={styles.section} key={header}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionHeaderText}>{header}</Text>
+          </View>
+          <View style={styles.sectionBody}>
+            {items.map(({id, label, icon, type, value}, index) => {
+              return (
+                <View
+                  key={id}
+                  style={[
+                    styles.rowWrapper,
+                    index === 0 && {borderTopWidth: 0},
+                  ]}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      // handle onPress
+                    }}>
+                    <View style={styles.row}>
+                      <FeatherIcon
+                        color="#616161"
+                        name={icon}
+                        style={styles.rowIcon}
+                        size={22}
+                      />
+
+                      <Text style={styles.rowLabel}>{label}</Text>
+
+                      <View style={styles.rowSpacer} />
+
+                      {type === 'select' && (
+                        <Text style={styles.rowValue}>{form[id]}</Text>
+                      )}
+
+                      {type === 'toggle' && (
+                        <Switch
+                          onChange={val => setForm({...form, [id]: val})}
+                          value={form[id]}
+                        />
+                      )}
+
+                      {(type === 'select' || type === 'link') && (
                         <FeatherIcon
-                          color="#616161"
-                          name={icon}
-                          style={styles.rowIcon}
+                          color="#ababab"
+                          name="chevron-right"
                           size={22}
                         />
-
-                        <Text style={styles.rowLabel}>{label}</Text>
-
-                        <View style={styles.rowSpacer} />
-
-                        {type === 'select' && (
-                          <Text style={styles.rowValue}>{form[id]}</Text>
-                        )}
-
-                        {type === 'toggle' && (
-                          <Switch
-                            onChange={val => setForm({...form, [id]: val})}
-                            value={form[id]}
-                          />
-                        )}
-
-                        {(type === 'select' || type === 'link') && (
-                          <FeatherIcon
-                            color="#ababab"
-                            name="chevron-right"
-                            size={22}
-                          />
-                        )}
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </View>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
           </View>
-        ))}
-        <View style={styles.sectionFooter}>
-          <CustomButton text="Log out" onPress={onLogOutPressed} />
         </View>
-      </ScrollView>
+      ))}
+      <View style={styles.sectionFooter}>
+        <CustomButton text="Log out" onPress={onLogOutPressed} />
+      </View>
+    </ScrollView>
   );
 }
 

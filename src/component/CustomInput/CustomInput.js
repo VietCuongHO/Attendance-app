@@ -1,5 +1,6 @@
-import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 const CustomInput = ({value, setValue, placeholder, secureTextEntry}) => {
   return (
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   input: {},
+  icon: {},
 });
 
 export default CustomInput;
