@@ -13,6 +13,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import CustomButton from '../../component/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {user_logout} from '../../api/user_api';
 
 const SECTIONS = [
   {
@@ -52,11 +53,11 @@ export default function SettingScreen() {
   //     navigation.navigate('SignIn');
   //   }
   // });
-  const onLogOutPressed = () => {
-    //validate user
-    AsyncStorage.removeItem('AccessToken');
-    navigation.navigate('SignIn');
-    console.log(AsyncStorage.getItem('AcessToken'))
+  const onLogOutPressed = async () => {
+    const isLogOut = await user_logout;
+    if (isLogOut) {
+      navigation.replace('SignIn');
+    }
   };
   const onProfilePressed = () => {
     //validate user

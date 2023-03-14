@@ -21,6 +21,7 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const onSignInPressed = () => {
     //validate user
@@ -61,7 +62,11 @@ const SignInScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {/* <Spinner visable={isLoading} /> */}
+    <Spinner
+          visible={isLoading}
+          textContent={'Loading...'}
+          textStyle={styles.spinnerTextStyle}
+        />
       <View style={styles.root}>
         <Image
           source={Logo}
@@ -102,6 +107,9 @@ const styles = StyleSheet.create({
     width: '70%',
     maxWidth: 300,
     height: 100,
+  },
+  spinnerTextStyle: {
+    color: '#FFF'
   },
 });
 
