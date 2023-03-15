@@ -28,7 +28,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.view_main}>
         <View style={styles.view_primary}>
           <View style={{width: '50%'}}>
-            <Text style={styles.text}>{firstName}</Text>
+            <Text style={styles.text}>{`Hi, ${firstName}`}</Text>
           </View>
           <View style={{width: '50%', alignItems: 'flex-end'}}>
             <Image

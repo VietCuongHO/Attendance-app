@@ -50,12 +50,16 @@ export default function SettingScreen() {
   });
 
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] =useState('')
   const [avatar, setAvatar] = useState('');
   const [email, setEmail] = useState('');
   useEffect(() => {
     const getDataFromApi = async () => {
       AsyncStorage.getItem('FirstName').then(data => {
         setFirstName(data);
+      });
+      AsyncStorage.getItem('LastName').then(data => {
+        setLastName(data);
       });
       AsyncStorage.getItem('Avatar').then(data => {
         setAvatar(data);
@@ -93,7 +97,7 @@ export default function SettingScreen() {
           style={styles.profileAvatar}
         />
 
-        <Text style={styles.profileName}>{firstName}</Text>
+        <Text style={styles.profileName}>{`${firstName} ${lastName}`}</Text>
 
         <Text style={styles.profileEmail}>{email}</Text>
 
