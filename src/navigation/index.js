@@ -11,6 +11,7 @@ import SettingScreen from '../screens/SettingScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 // import NotFoundScreen from '../screens/NotFoundScreen';
+// import LoadingScreen from '../screens/LoadingScreen';
 
 const Tab = createBottomTabNavigator();
 

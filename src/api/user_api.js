@@ -31,7 +31,7 @@ export const user_logout = async () => {
       });
       if (result.data.success) {
         AsyncStorage.removeItem('AccessToken');
-        console.log(result)
+        console.log(result);
         return true;
       }
     }

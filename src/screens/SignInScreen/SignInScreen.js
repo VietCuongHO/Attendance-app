@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {user_login} from '../../api/user_api';
 import Spinner from 'react-native-loading-spinner-overlay';
 import axios from 'axios';
+import {useAuth} from '../../context';
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
@@ -62,11 +63,11 @@ const SignInScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-    <Spinner
-          visible={isLoading}
-          textContent={'Loading...'}
-          textStyle={styles.spinnerTextStyle}
-        />
+      <Spinner
+        visible={isLoading}
+        textContent={'Loading...'}
+        textStyle={styles.spinnerTextStyle}
+      />
       <View style={styles.root}>
         <Image
           source={Logo}
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   spinnerTextStyle: {
-    color: '#FFF'
+    color: '#FFF',
   },
 });
 
