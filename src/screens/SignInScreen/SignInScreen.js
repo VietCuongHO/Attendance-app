@@ -50,6 +50,10 @@ const SignInScreen = () => {
           console.log(result);
           if (result.data.code === 200) {
             AsyncStorage.setItem('AccessToken', result.data.token);
+            AsyncStorage.setItem('Email', result.data.email);
+            AsyncStorage.setItem('Avatar', result.data.avatar);
+            AsyncStorage.setItem('FirstName', result.data.first_name);
+            AsyncStorage.setItem('LastName', result.data.last_name);
             navigation.replace('BottomTab');
           }
         })

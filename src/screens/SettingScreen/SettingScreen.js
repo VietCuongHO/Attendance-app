@@ -15,6 +15,9 @@ import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {user_logout} from '../../api/user_api';
 
+const avatar_default =
+  'https://static.vecteezy.com/system/resources/previews/013/042/571/original/default-avatar-profile-icon-social-media-user-photo-in-flat-style-vector.jpg';
+
 const SECTIONS = [
   {
     header: 'Preferences',
@@ -46,13 +49,27 @@ export default function SettingScreen() {
     wifi: false,
   });
 
+  const [firstName, setFirstName] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [email, setEmail] = useState('');
+  useEffect(() => {
+    const getDataFromApi = async () => {
+      AsyncStorage.getItem('FirstName').then(data => {
+        setFirstName(data);
+      });
+      AsyncStorage.getItem('Avatar').then(data => {
+        setAvatar(data);
+      });
+      AsyncStorage.getItem('Email').then(data => {
+        setEmail(data);
+      });
+    };
+    getDataFromApi();
+    return () => {};
+  }, []);
+
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   if (!AsyncStorage.getItem('AcessToken')) {
-  //     navigation.navigate('SignIn');
-  //   }
-  // });
   const onLogOutPressed = async () => {
     const isLogOut = await user_logout;
     if (isLogOut) {
@@ -60,7 +77,6 @@ export default function SettingScreen() {
     }
   };
   const onProfilePressed = () => {
-    //validate user
     navigation.navigate('Profile');
   };
 
@@ -71,11 +87,15 @@ export default function SettingScreen() {
       </View>
 
       <View style={styles.profile}>
-        <Image alt="" source={Avatar} style={styles.profileAvatar} />
+        <Image
+          alt=""
+          source={{uri: `${avatar}` ? `${avatar}` : avatar_default}}
+          style={styles.profileAvatar}
+        />
 
-        <Text style={styles.profileName}>Viet Cuong</Text>
+        <Text style={styles.profileName}>{firstName}</Text>
 
-        <Text style={styles.profileEmail}>hovietcuong1803@gmail.com</Text>
+        <Text style={styles.profileEmail}>{email}</Text>
 
         <TouchableOpacity onPress={onProfilePressed}>
           <View style={styles.profileAction}>
